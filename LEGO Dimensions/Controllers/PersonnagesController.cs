@@ -14,10 +14,18 @@ namespace LEGO_Dimensions.Controllers
 
         public ActionResult Index()
         {
-            using (IDal dal = new Dal())
+            try
             {
-                IEnumerable<Personnage> personnages = dal.ObtientTousLesPersonnages();
-                return View(personnages);
+                using (IDal dal = new Dal())
+                {
+                    IEnumerable<Personnage> personnages = dal.ObtientTousLesPersonnages();
+                    return View(personnages);
+                }
+            }
+            catch(Exception e)
+            {
+                ViewBag.MessageErreur = e.Message;
+                return View("Index");
             }
         }
 
