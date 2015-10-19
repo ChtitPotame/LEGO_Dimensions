@@ -72,7 +72,7 @@ namespace LEGO_Dimensions.Models
                 personnageTrouve.Pouvoirs = pouvoirs;
                 bdd.SaveChanges();
             }
-        }
+        } 
 
         public List<Personnage> ObtientTousLesPersonnages()
         {
