@@ -1,0 +1,48 @@
+﻿@model IEnumerable<LEGO_Dimensions.Models.Pouvoir>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css">
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="Liste">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Personnages)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Personnages)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PouvoirId }, new { @class = "EditDeleteLink" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PouvoirId }, new { @class = "EditDeleteLink" })
+            </td>
+        </tr>
+    }
+    
+    </table>
+    @Html.ActionLink("Retour", "Index", "Accueil")
+</body>
+</html>

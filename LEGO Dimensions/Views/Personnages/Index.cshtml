@@ -1,0 +1,56 @@
+﻿@model IEnumerable<LEGO_Dimensions.Models.Personnage>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css">
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="Liste">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Univers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pouvoirs)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (LEGO_Dimensions.Models.Personnage personnage in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => personnage.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => personnage.Univers.Nom)
+            </td>
+            <td>
+                @foreach (LEGO_Dimensions.Models.Pouvoir pouvoir in personnage.Pouvoirs)
+                {
+                    @Html.DisplayFor(modelItem => pouvoir.Nom)
+                }
+            </td>
+            <td class="EditDelete">
+                @Html.ActionLink("Modifier", "Edit", new { id = personnage.PersonnageId }, new { @class = "EditDeleteLink" }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = personnage.PersonnageId }, new { @class = "EditDeleteLink" })
+            </td>
+        </tr>
+    }
+    
+    </table>    @Html.ActionLink("Retour", "Index", "Accueil")
+</body>
+</html>
