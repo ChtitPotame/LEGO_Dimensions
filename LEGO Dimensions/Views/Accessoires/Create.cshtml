@@ -60,22 +60,6 @@
 
             </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Pouvoirs2)
-                <div class="editor-field CheckBoxList">
-                    @{
-        using (LEGO_Dimensions.Models.IDal dal = new LEGO_Dimensions.Models.Dal())
-        {
-            @Html.ListBoxFor(model => model.Pouvoirs2Id, new MultiSelectList(dal.ObtientTousLesPouvoirs(), "PouvoirId", "Nom"))
-        }
-                    }
-                    @Html.ValidationMessageFor(model => model.Pouvoirs)
-                </div>
-
-            </div>
-
-
-
             <p>
                 <input type="submit" value="Créer"/>
             </p>
