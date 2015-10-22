@@ -1,4 +1,4 @@
-﻿@model LEGO_Dimensions.Models.Personnage
+﻿@model LEGO_Dimensions.Models.Accessoire
 
 @{
     Layout = null;
@@ -16,14 +16,15 @@
     <script src="~/Scripts/jquery-1.8.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    
-    @using (Html.BeginForm()) {
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-    
+
         <fieldset>
-            <legend>Personnage</legend>
-    
+            <legend>Accessoires</legend>
+
             <div class="editor-label">
                 @Html.LabelFor(model => model.Nom)
             </div>
@@ -33,15 +34,15 @@
             </div>
 
             <div class="editor-label">
-                @Html.LabelFor(model => model.Univers)
-                <div class="editor-field">                   
+                @Html.LabelFor(model => model.PersonnageAssocie)
+                <div class="editor-field">
                     @{
                         using (LEGO_Dimensions.Models.IDal dal = new LEGO_Dimensions.Models.Dal())
                         {
-                            @Html.DropDownListFor(model => model.UniversId, new SelectList(dal.ObtientTousLesUnivers(), "UniversId", "Nom"), "-- Choisir un univers --")
+                            @Html.DropDownListFor(model => model.PersonnageId, new SelectList(dal.ObtientTousLesPersonnages(), "PersonnageId", "Nom"), "-- Choisir un personnage --")
                         }
                     }
-                    @Html.ValidationMessageFor(model => model.Univers)
+                    @Html.ValidationMessageFor(model => model.PersonnageAssocie)
                 </div>
             </div>
 
@@ -51,7 +52,7 @@
                     @{
                         using (LEGO_Dimensions.Models.IDal dal = new LEGO_Dimensions.Models.Dal())
                         {
-                                @Html.ListBoxFor(model => model.PouvoirsId, new MultiSelectList(dal.ObtientTousLesPouvoirs(), "PouvoirId", "Nom"))
+                            @Html.ListBoxFor(model => model.PouvoirsId, new MultiSelectList(dal.ObtientTousLesPouvoirs(), "PouvoirId", "Nom"))
                         }
                     }
                     @Html.ValidationMessageFor(model => model.Pouvoirs)
@@ -60,11 +61,11 @@
             </div>
 
             <p>
-                <input type="submit" value="Créer" />
+                <input type="submit" value="Créer"/>
             </p>
         </fieldset>
     }
-    
+
     <div>
         @Html.ActionLink("Retour", "Index")
     </div>

@@ -41,7 +41,7 @@
             <td>
                 @foreach (LEGO_Dimensions.Models.Pouvoir pouvoir in personnage.Pouvoirs)
                 {
-                    @Html.DisplayFor(modelItem => pouvoir.Nom)
+                    @Html.DisplayFor(modelItem => pouvoir.Nom) <br />
                 }
             </td>
             <td class="EditDelete">

@@ -93,23 +93,30 @@ namespace LEGO_Dimensions.Models
         #endregion
 
         #region Accessoire
-        public void CreerAccesoire(string nom)
+        public void CreerAccessoire(string nom)
         {
             bdd.Accessoires.Add(new Accessoire { Nom = nom });
             bdd.SaveChanges();
         }
 
-        public void ModifierAccesoire(int id, string nom)
+        public void CreerAccessoire(Accessoire accessoire)
+        {
+            bdd.Accessoires.Add(accessoire);
+            bdd.SaveChanges();
+        }
+
+        public void ModifierAccessoire(int id, string nom, List<Pouvoir> pouvoirs = null)
         {
             Accessoire accessoireTrouve = bdd.Accessoires.FirstOrDefault(a => a.AccessoireId == id);
             if (accessoireTrouve != null)
             {
                 accessoireTrouve.Nom = nom;
+                accessoireTrouve.Pouvoirs = pouvoirs;
                 bdd.SaveChanges();
             }
         }
 
-        public List<Accessoire> ObtientTousLesAccesoires()
+        public List<Accessoire> ObtientTousLesAccessoires()
         {
             return bdd.Accessoires.Include("PersonnageAssocie").Include("Pouvoirs").ToList();
         }
@@ -152,12 +159,12 @@ namespace LEGO_Dimensions.Models
 
         public List<Pouvoir> ObtientTousLesPouvoirs()
         {
-            return bdd.Pouvoirs.Include("Personnages").ToList();
+            return bdd.Pouvoirs.Include("Personnages").Include("Accessoires").ToList();
         }
 
         public Pouvoir ObtientUnPouvoir(int id)
         {
-            return bdd.Pouvoirs.Include("Personnages").FirstOrDefault(p => p.PouvoirId == id);
+            return bdd.Pouvoirs.Include("Personnages").Include("Accessoires").FirstOrDefault(p => p.PouvoirId == id);
         }
 
         public void SupprimerUnPouvoir(int id)

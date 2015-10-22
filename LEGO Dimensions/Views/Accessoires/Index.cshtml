@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LEGO_Dimensions.Models.Accessoire>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css">
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Ajouter un vehicule/accessoire", "Create")
+    </p>
+    <table class="Liste">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonnageAssocie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pouvoirs)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (LEGO_Dimensions.Models.Accessoire accessoire in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => accessoire.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => accessoire.PersonnageAssocie.Nom)
+                </td>
+                <td>
+                    @foreach (LEGO_Dimensions.Models.Pouvoir pouvoir in accessoire.Pouvoirs)
+                    {
+                        @Html.DisplayFor(modelItem => pouvoir.Nom) <br />
+                    }
+                </td>
+                <td class="EditDelete">
+                    @Html.ActionLink("Modifier", "Edit", new { id = accessoire.AccessoireId }, new { @class = "EditDeleteLink" }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = accessoire.AccessoireId }, new { @class = "EditDeleteLink" })
+                </td>
+            </tr>
+        }
+
+    </table>    @Html.ActionLink("Retour", "Index", "Accueil")
+</body>
+</html>

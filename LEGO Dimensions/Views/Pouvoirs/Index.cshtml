@@ -24,20 +24,32 @@
             <th>
                 @Html.DisplayNameFor(model => model.Personnages)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Accessoires)
+            </th>
             <th></th>
         </tr>
     
-    @foreach (var item in Model) {
+    @foreach (LEGO_Dimensions.Models.Pouvoir pouvoir in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nom)
+                @Html.DisplayFor(modelItem => pouvoir.Nom)
+            </td>
+            <td>                
+                @foreach (LEGO_Dimensions.Models.Personnage personnage in pouvoir.Personnages)
+                {
+                    @Html.DisplayFor(modelItem => personnage.Nom) <br />
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Personnages)
+                @foreach (LEGO_Dimensions.Models.Accessoire accessoire in pouvoir.Accessoires)
+                {
+                    @Html.DisplayFor(modelItem => accessoire.Nom) <br />
+                }
             </td>
             <td>
-                @Html.ActionLink("Modifier", "Edit", new { id = item.PouvoirId }, new { @class = "EditDeleteLink" }) |
-                @Html.ActionLink("Supprimer", "Delete", new { id = item.PouvoirId }, new { @class = "EditDeleteLink" })
+                @Html.ActionLink("Modifier", "Edit", new { id = pouvoir.PouvoirId }, new { @class = "EditDeleteLink" }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = pouvoir.PouvoirId }, new { @class = "EditDeleteLink" })
             </td>
         </tr>
     }

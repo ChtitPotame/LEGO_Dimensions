@@ -21,9 +21,10 @@ namespace LEGO_Dimensions.Models
         Personnage ObtientUnPersonnage(int id);
         void SupprimerUnPersonnage(int id);
 
-        void CreerAccesoire(string nom);
-        void ModifierAccesoire(int id, string nom);
-        List<Accessoire> ObtientTousLesAccesoires();
+        void CreerAccessoire(string nom);
+        void CreerAccessoire(Accessoire accessoire);
+        void ModifierAccessoire(int id, string nom, List<Pouvoir> pouvoirs = null);
+        List<Accessoire> ObtientTousLesAccessoires();
         Accessoire ObtientUnAccessoire(int id);
         void SupprimerUnAccessoire(int id);
 
