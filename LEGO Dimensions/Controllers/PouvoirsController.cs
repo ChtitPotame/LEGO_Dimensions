@@ -42,13 +42,30 @@ namespace LEGO_Dimensions.Controllers
             }
         }
 
-        [HttpPost]
         public ActionResult Edit(int id)
         {
             using (IDal dal = new Dal())
             {
                 Pouvoir pouvoir = dal.ObtientUnPouvoir(id);
-                return View("Index", pouvoir);
+                return View("Edit", pouvoir);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Pouvoir pouvoir)
+        {
+            using (IDal dal = new Dal())
+            {
+                if (ModelState.IsValid)
+                {
+                    dal.ModifierPouvoir(pouvoir.PouvoirId, pouvoir.Nom);
+                    List<Pouvoir> pouvoirs = dal.ObtientTousLesPouvoirs();
+                    return View("Index", pouvoirs);
+                }
+                else
+                {
+                    return View(pouvoir);
+                }
             }
         }
         

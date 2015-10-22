@@ -18,6 +18,7 @@ namespace LEGO_Dimensions.Models
         [Required(ErrorMessage = "Le personnage doit être relié à un univers.")]
         public int UniversId { get; set; }
         public virtual Univers Univers { get; set; }
+        public List<int> PouvoirsId { get; set; }
         public virtual List<Pouvoir> Pouvoirs { get; set; }
         public virtual List<Accessoire> AccessoiresAssocies { get; set; }
     }

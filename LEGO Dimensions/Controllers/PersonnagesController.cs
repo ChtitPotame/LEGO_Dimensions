@@ -34,6 +34,10 @@ namespace LEGO_Dimensions.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    personnage.Pouvoirs = new List<Pouvoir>();
+                    foreach (int pouvoirId in personnage.PouvoirsId)
+                        personnage.Pouvoirs.Add(dal.ObtientUnPouvoir(pouvoirId));
+
                     dal.CreerPersonnage(personnage);
                     List<Personnage> personnages = dal.ObtientTousLesPersonnages();
                     return View("Index", personnages);
@@ -50,9 +54,13 @@ namespace LEGO_Dimensions.Controllers
             using (IDal dal = new Dal())
             {
                 Personnage personnage = dal.ObtientUnPersonnage(id);
+                personnage.PouvoirsId = new List<int>();
+                foreach (Pouvoir pouvoir in personnage.Pouvoirs)
+                    personnage.PouvoirsId.Add(pouvoir.PouvoirId);
                 return View("Edit", personnage);
             }
         }
+
         [HttpPost]
         public ActionResult Edit(Personnage personnage)
         {
@@ -60,6 +68,10 @@ namespace LEGO_Dimensions.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    personnage.Pouvoirs = new List<Pouvoir>();
+                    foreach (int pouvoirId in personnage.PouvoirsId)
+                        personnage.Pouvoirs.Add(dal.ObtientUnPouvoir(pouvoirId));
+
                     dal.ModifierPersonnage(personnage.PersonnageId, personnage.Nom, personnage.Univers, personnage.Pouvoirs);
                     List<Personnage> personnages = dal.ObtientTousLesPersonnages();
                     return View("Index", personnages);

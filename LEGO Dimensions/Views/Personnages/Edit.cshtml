@@ -16,14 +16,17 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-
 
     <fieldset>
         <legend>Personnage</legend>
 
+        <div hidden>
+            @Html.EditorFor(model => model.PersonnageId)
+        </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Nom)
         </div>
@@ -36,10 +39,10 @@
             @Html.LabelFor(model => model.Univers)
             <div class="editor-field">
                 @{
-        using (LEGO_Dimensions.Models.IDal dal = new LEGO_Dimensions.Models.Dal())
-        {
-            @Html.DropDownListFor(model => model.UniversId, new SelectList(dal.ObtientTousLesUnivers(), "UniversId", "Nom"))
-        }
+                    using (LEGO_Dimensions.Models.IDal dal = new LEGO_Dimensions.Models.Dal())
+                    {
+                        @Html.DropDownListFor(model => model.UniversId, new SelectList(dal.ObtientTousLesUnivers(), "UniversId", "Nom"))
+                    }
                 }
                 @Html.ValidationMessageFor(model => model.Univers)
             </div>
@@ -47,16 +50,20 @@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Pouvoirs)
-            <div class="editor-field">
+            <div class="editor-field CheckBoxList">
                 @{
-        using (LEGO_Dimensions.Models.IDal dal = new LEGO_Dimensions.Models.Dal())
-        {
-            @Html.DropDownListFor(model => model.UniversId, new SelectList(dal.ObtientTousLesPouvoirs(), "PouvoirId", "Nom"), "-- Choisir des pouvoirs --")
-        }
+                    using (LEGO_Dimensions.Models.IDal dal = new LEGO_Dimensions.Models.Dal())
+                    {
+                        @Html.ListBoxFor(model => model.PouvoirsId, new MultiSelectList(dal.ObtientTousLesPouvoirs(), "PouvoirId", "Nom"))
+                    }
                 }
                 @Html.ValidationMessageFor(model => model.Pouvoirs)
             </div>
+
         </div>
+
+
+
 
 
         <p>

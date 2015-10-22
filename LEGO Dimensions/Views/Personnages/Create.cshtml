@@ -46,15 +46,16 @@
 
             <div class="editor-label">
                 @Html.LabelFor(model => model.Pouvoirs)
-                <div class="editor-field">
+                <div class="editor-field CheckBoxList">
                     @{
                         using (LEGO_Dimensions.Models.IDal dal = new LEGO_Dimensions.Models.Dal())
                         {
-                            @Html.DropDownListFor(model => model.UniversId, new SelectList(dal.ObtientTousLesPouvoirs(), "PouvoirId", "Nom"), "-- Choisir des pouvoirs --")
+                                @Html.ListBoxFor(model => model.PouvoirsId, new MultiSelectList(dal.ObtientTousLesPouvoirs(), "PouvoirId", "Nom"))
                         }
                     }
                     @Html.ValidationMessageFor(model => model.Pouvoirs)
                 </div>
+
             </div>
 
             <p>
