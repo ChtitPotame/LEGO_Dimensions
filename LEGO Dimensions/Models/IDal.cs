@@ -12,7 +12,7 @@ namespace LEGO_Dimensions.Models
         void ModifierUnivers(int id, string nom);
         List<Univers> ObtientTousLesUnivers();
         Univers ObtientUnUnivers(int id);
-        void SupprimerUnUnivers(int id);
+        void SupprimerUnUnivers(int id); 
 
         void CreerPersonnage(string nom, Univers univers);
         void CreerPersonnage(Personnage personnage);
