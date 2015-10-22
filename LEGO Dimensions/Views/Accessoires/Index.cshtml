@@ -40,7 +40,13 @@
                     @Html.DisplayFor(modelItem => accessoire.PersonnageAssocie.Nom)
                 </td>
                 <td>
+                    Version 1 : <br />
                     @foreach (LEGO_Dimensions.Models.Pouvoir pouvoir in accessoire.Pouvoirs)
+                    {
+                        @Html.DisplayFor(modelItem => pouvoir.Nom) <br />
+                    }
+                    Version 2 : <br />                    
+                    @foreach (LEGO_Dimensions.Models.Pouvoir pouvoir in accessoire.Pouvoirs2)
                     {
                         @Html.DisplayFor(modelItem => pouvoir.Nom) <br />
                     }
