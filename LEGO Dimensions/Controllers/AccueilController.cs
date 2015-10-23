@@ -15,9 +15,9 @@ namespace LEGO_Dimensions.Controllers
 
         public ActionResult Index()
         {
-            IDatabaseInitializer<BddContext> init = new DropCreateDatabaseAlways<BddContext>();
-            Database.SetInitializer(init);
-            init.InitializeDatabase(new BddContext());
+            //IDatabaseInitializer<BddContext> init = new DropCreateDatabaseAlways<BddContext>();
+            //Database.SetInitializer(init);
+            //init.InitializeDatabase(new BddContext());
             return View();
         }
 
