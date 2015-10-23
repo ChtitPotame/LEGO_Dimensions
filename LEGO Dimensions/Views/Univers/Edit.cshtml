@@ -23,21 +23,23 @@
     
         <fieldset>
             <legend>Univers</legend>
-    
-            @Html.HiddenFor(model => model.UniversId)
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Nom)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Nom)
-                @Html.ValidationMessageFor(model => model.Nom)
-            </div>
-    
-            <p>
-                <input type="submit" value="enregistrer" />
-            </p>
-        </fieldset>
+
+                <div hidden="hidden">
+                @Html.HiddenFor(model => model.UniversId)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Nom)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Nom)
+                    @Html.ValidationMessageFor(model => model.Nom)
+                </div>
+
+                <p>
+                    <input type="submit" value="enregistrer" />
+                </p>
+</fieldset>
     }
     
     <div>

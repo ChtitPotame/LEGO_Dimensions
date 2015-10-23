@@ -23,21 +23,23 @@
     
         <fieldset>
             <legend>Pouvoir</legend>
-    
-            @Html.HiddenFor(model => model.PouvoirId)
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Nom)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Nom)
-                @Html.ValidationMessageFor(model => model.Nom)
-            </div>
-    
-            <p>
-                <input type="submit" value="Enregistrer" />
-            </p>
-        </fieldset>
+
+                <div hidden="hidden">
+                @Html.HiddenFor(model => model.PouvoirId)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Nom)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Nom)
+                    @Html.ValidationMessageFor(model => model.Nom)
+                </div>
+
+                <p>
+                    <input type="submit" value="Enregistrer" />
+                </p>
+</fieldset>
     }
     
     <div>
