@@ -16,14 +16,14 @@ namespace LEGO_Dimensions.Models
 
         void CreerPersonnage(string nom, Univers univers);
         void CreerPersonnage(Personnage personnage);
-        void ModifierPersonnage(int id, string nom, Univers univers, List<Pouvoir> pouvoirs = null);
+        void ModifierPersonnage(int id, string nom, int universId, List<Pouvoir> pouvoirs = null);
         List<Personnage> ObtientTousLesPersonnages();
         Personnage ObtientUnPersonnage(int id);
         void SupprimerUnPersonnage(int id);
 
         void CreerAccessoire(string nom);
         void CreerAccessoire(Accessoire accessoire);
-        void ModifierAccessoire(int id, string nom, List<Pouvoir> pouvoirs = null);
+        void ModifierAccessoire(int id, string nom, int personnageId, List<Pouvoir> pouvoirs = null);
         List<Accessoire> ObtientTousLesAccessoires();
         Accessoire ObtientUnAccessoire(int id);
         void SupprimerUnAccessoire(int id);

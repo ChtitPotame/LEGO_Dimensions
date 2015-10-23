@@ -15,6 +15,7 @@ namespace LEGO_Dimensions.Models
         [MaxLength(50)]
         [Required(ErrorMessage = "Le nom doit être renseigné.")]
         public string Nom { get; set; }
+        [Required(ErrorMessage = "L'objet doit appartenir à un personnage.")]
         public int PersonnageId { get; set; }
         [DisplayName("Personnage associé")]
         public virtual Personnage PersonnageAssocie { get; set; }

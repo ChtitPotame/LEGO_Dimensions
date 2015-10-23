@@ -23,7 +23,7 @@
         @Html.ValidationSummary(true)
 
         <fieldset>
-            <legend>Personnage</legend>
+            <legend>Véhicule/Accessoire</legend>
 
             <div class="Cacher">
                 @Html.EditorFor(model => model.AccessoireId)
@@ -40,12 +40,12 @@
                 @Html.LabelFor(model => model.PersonnageAssocie)
                 <div class="editor-field">
                     @{
-        using (LEGO_Dimensions.Models.IDal dal = new LEGO_Dimensions.Models.Dal())
-        {
-            @Html.DropDownListFor(model => model.PersonnageId, new SelectList(dal.ObtientTousLesPersonnages(), "UniversId", "Nom"))
-        }
+                        using (LEGO_Dimensions.Models.IDal dal = new LEGO_Dimensions.Models.Dal())
+                        {
+                            @Html.DropDownListFor(model => model.PersonnageId, new SelectList(dal.ObtientTousLesPersonnages(), "PersonnageId", "Nom"))
+                        }
                     }
-                    @Html.ValidationMessageFor(model => model.PersonnageAssocie)
+                    @Html.ValidationMessageFor(model => model.PersonnageId)
                 </div>
             </div>
 

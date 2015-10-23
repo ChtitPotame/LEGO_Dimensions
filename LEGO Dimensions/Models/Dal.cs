@@ -62,14 +62,15 @@ namespace LEGO_Dimensions.Models
             bdd.SaveChanges();
         }
 
-        public void ModifierPersonnage(int id, string nom, Univers univers, List<Pouvoir> pouvoirs = null)
+        public void ModifierPersonnage(int id, string nom, int universId, List<Pouvoir> pouvoirs = null)
         {
             Personnage personnageTrouve = bdd.Personnages.FirstOrDefault(p => p.PersonnageId == id);
             if (personnageTrouve != null)
             {
                 personnageTrouve.Nom = nom;
-                personnageTrouve.Univers = univers;
-                personnageTrouve.Pouvoirs = pouvoirs;
+                personnageTrouve.UniversId = universId;
+                personnageTrouve.Pouvoirs.Clear();
+                personnageTrouve.Pouvoirs = new List<Pouvoir>(pouvoirs);
                 bdd.SaveChanges();
             }
         } 
@@ -105,13 +106,15 @@ namespace LEGO_Dimensions.Models
             bdd.SaveChanges();
         }
 
-        public void ModifierAccessoire(int id, string nom, List<Pouvoir> pouvoirs = null)
+        public void ModifierAccessoire(int id, string nom, int personnageId, List<Pouvoir> pouvoirs = null)
         {
             Accessoire accessoireTrouve = bdd.Accessoires.FirstOrDefault(a => a.AccessoireId == id);
             if (accessoireTrouve != null)
             {
                 accessoireTrouve.Nom = nom;
-                accessoireTrouve.Pouvoirs = pouvoirs;
+                accessoireTrouve.PersonnageId = personnageId;
+                accessoireTrouve.Pouvoirs.Clear();
+                accessoireTrouve.Pouvoirs = new List<Pouvoir>(pouvoirs);
                 bdd.SaveChanges();
             }
         }

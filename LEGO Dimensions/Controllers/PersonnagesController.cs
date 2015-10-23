@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace LEGO_Dimensions.Controllers
-{
+{ 
     public class PersonnagesController : Controller
     {
         //
@@ -35,8 +35,9 @@ namespace LEGO_Dimensions.Controllers
                 if (ModelState.IsValid)
                 {
                     personnage.Pouvoirs = new List<Pouvoir>();
-                    foreach (int pouvoirId in personnage.PouvoirsId)
-                        personnage.Pouvoirs.Add(dal.ObtientUnPouvoir(pouvoirId));
+                    if (personnage.PouvoirsId != null)
+                        foreach (int pouvoirId in personnage.PouvoirsId)
+                            personnage.Pouvoirs.Add(dal.ObtientUnPouvoir(pouvoirId));
 
                     dal.CreerPersonnage(personnage);
                     List<Personnage> personnages = dal.ObtientTousLesPersonnages();
@@ -69,10 +70,11 @@ namespace LEGO_Dimensions.Controllers
                 if (ModelState.IsValid)
                 {
                     personnage.Pouvoirs = new List<Pouvoir>();
-                    foreach (int pouvoirId in personnage.PouvoirsId)
-                        personnage.Pouvoirs.Add(dal.ObtientUnPouvoir(pouvoirId));
+                    if (personnage.PouvoirsId != null)
+                        foreach (int pouvoirId in personnage.PouvoirsId)
+                            personnage.Pouvoirs.Add(dal.ObtientUnPouvoir(pouvoirId));
 
-                    dal.ModifierPersonnage(personnage.PersonnageId, personnage.Nom, personnage.Univers, personnage.Pouvoirs);
+                    dal.ModifierPersonnage(personnage.PersonnageId, personnage.Nom, personnage.UniversId, personnage.Pouvoirs);
                     List<Personnage> personnages = dal.ObtientTousLesPersonnages();
                     return View("Index", personnages);
                 }

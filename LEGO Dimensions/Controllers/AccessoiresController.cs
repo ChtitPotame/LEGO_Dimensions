@@ -35,8 +35,9 @@ namespace LEGO_Dimensions.Controllers
                 if (ModelState.IsValid)
                 {
                     accessoire.Pouvoirs = new List<Pouvoir>();
-                    foreach (int pouvoirId in accessoire.PouvoirsId)
-                        accessoire.Pouvoirs.Add(dal.ObtientUnPouvoir(pouvoirId));
+                    if (accessoire.PouvoirsId != null)
+                        foreach (int pouvoirId in accessoire.PouvoirsId)
+                            accessoire.Pouvoirs.Add(dal.ObtientUnPouvoir(pouvoirId));
 
                     dal.CreerAccessoire(accessoire);
                     List<Accessoire> accessoires = dal.ObtientTousLesAccessoires();
@@ -71,10 +72,11 @@ namespace LEGO_Dimensions.Controllers
                 if (ModelState.IsValid)
                 {
                     accessoire.Pouvoirs = new List<Pouvoir>();
-                    foreach (int pouvoirId in accessoire.PouvoirsId)
-                        accessoire.Pouvoirs.Add(dal.ObtientUnPouvoir(pouvoirId));
+                    if (accessoire.PouvoirsId != null)
+                        foreach (int pouvoirId in accessoire.PouvoirsId)
+                            accessoire.Pouvoirs.Add(dal.ObtientUnPouvoir(pouvoirId));
 
-                    dal.ModifierAccessoire(accessoire.AccessoireId, accessoire.Nom, accessoire.Pouvoirs);
+                    dal.ModifierAccessoire(accessoire.AccessoireId, accessoire.Nom, accessoire.PersonnageId, accessoire.Pouvoirs);
                     List<Accessoire> accessoires = dal.ObtientTousLesAccessoires();
                     return View("Index", accessoires);
                 }
