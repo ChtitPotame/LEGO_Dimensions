@@ -55,3 +55,7 @@ td, th {
     color: black;
 }
 
+.Cacher
+{
+    visibility: hidden;
+}
