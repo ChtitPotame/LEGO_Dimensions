@@ -44,7 +44,11 @@
             <td>
                 @foreach (LEGO_Dimensions.Models.Accessoire accessoire in pouvoir.Accessoires)
                 {
-                    @Html.DisplayFor(modelItem => accessoire.Nom) <br />
+                    @Html.DisplayFor(modelItem => accessoire.Nom);
+                    <text> (</text>
+                    @Html.DisplayFor(modelItem => accessoire.PersonnageAssocie.Nom);
+                    <text>)</text>
+                    <br />
                 }
             </td>
             <td>
